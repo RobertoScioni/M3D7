@@ -50,25 +50,25 @@ const loadusers = async () => {
 	} catch (err) {
 		console.log(err)
 	}
-}   const sortUsers =()=>{
-	
-	 let buttonSort = document.createElement('button')
-	 let container = document.querySelector('#UI')
-	 buttonSort.id = 'buttonSort'
-	 buttonSort.innerHTML='sort users'
-	 buttonSort.className="btn btn-secondary mt-3"
+}
 
-	 buttonSort.onclick=()=>{
-		extractNames().sort()
+const sortUsers = () => {
+	let buttonSort = document.createElement("button")
+	let container = document.querySelector("#UI")
+	buttonSort.id = "buttonSort"
+	buttonSort.innerHTML = "sort users"
+	buttonSort.className = "btn btn-secondary mt-3"
 
-	 }
-	 container.appendChild(buttonSort)
+	buttonSort.onclick = () => {
+		//console.log(extractNames(users).sort())
 
+		printUsers(
+			users.sort((user1, user2) => user1.name.localeCompare(user2.name))
+		)
+	}
+	container.appendChild(buttonSort)
+}
 
-   }
- 
-  
- 
 const extractNames = (vector) => {
 	return vector.map((user) => user.name)
 }
@@ -81,10 +81,13 @@ const printUsers = (vector) => {
 		let user = document.createElement("li")
 		user.classList.add("list-group-item")
 		user.innerText = name
+		let link = document.createElement("a")
+		link.href = `user.html?${name}`
+		link.innerText = "details"
+		user.appendChild(link)
 		target.appendChild(user)
 	})
 }
-
 
 window.onload = async () => {
 	document.title = config.title
