@@ -10,10 +10,16 @@ const config = {
  *
  */
 
+const extractNames = ()=>{
+
+}
+
 const loadusers = async () => {
 	try{
 	  const loaddata = await fetch(`https://jsonplaceholder.typicode.com/users `)
-	  users_data = await loaddata.json()
+
+	  const users_data = await loaddata.json()
+	  
 	  
 	 
 	  return users_data;
@@ -27,8 +33,14 @@ const loadusers = async () => {
 	  
 	  
   };
-window.onload = () => {
+  
+
+ 
+window.onload =  () => {
 	document.title = config.title
 	document.querySelector("#mainMenu").innerHTML = config.title
-	loadusers()
+	// loadusers().then( user => 
+	// 	console.log(user)
+	// )
+	
 }
