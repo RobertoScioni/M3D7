@@ -52,6 +52,12 @@ const loadusers = async () => {
 	}
 }
 
+const evaluateStraigth = (usr1, usr2) => usr1.name.localeCompare(usr2.name)
+
+const evaluateReverse = (usr2, usr1) => usr1.name.localeCompare(usr2.name)
+
+let evaluate = evaluateStraigth
+
 const sortUsers = () => {
 	let buttonSort = document.createElement("button")
 	let container = document.querySelector("#UI")
@@ -61,10 +67,9 @@ const sortUsers = () => {
 
 	buttonSort.onclick = () => {
 		//console.log(extractNames(users).sort())
-
-		printUsers(
-			users.sort((user1, user2) => user1.name.localeCompare(user2.name))
-		)
+		printUsers(users.sort((user1, user2) => evaluate(user1, user2)))
+		evaluate =
+			evaluate === evaluateStraigth ? evaluateReverse : evaluateStraigth
 	}
 	container.appendChild(buttonSort)
 }
