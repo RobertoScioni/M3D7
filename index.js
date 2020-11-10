@@ -9,6 +9,24 @@ const config = {
  * initialize the page
  *
  */
+
+const loadusers = async () => {
+	try{
+	  const loaddata = await fetch(`https://jsonplaceholder.typicode.com/users `)
+	  users_data = await loaddata.json()
+	  
+	 
+	  return users_data;
+	}
+	  
+	  catch(err){
+		(console.log(err));
+	  }
+   
+	 
+	  
+	  
+  };
 window.onload = () => {
 	document.title = config.title
 	document.querySelector("#mainMenu").innerHTML = config.title
