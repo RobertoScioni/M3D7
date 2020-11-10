@@ -30,4 +30,5 @@ const loadusers = async () => {
 window.onload = () => {
 	document.title = config.title
 	document.querySelector("#mainMenu").innerHTML = config.title
+	loadusers()
 }
