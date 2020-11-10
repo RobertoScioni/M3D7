@@ -32,7 +32,9 @@
 		<link rel="stylesheet" href="index.css" />
 		<!--myScripts-->
 		<script src="index.js"></script>
-		<!--PAIR PROGRAMMING EXERCISE.
+		<title>i will be changed by config</title>
+		<!--
+				PAIR PROGRAMMING EXERCISE.
 				1 DRIVER, 1 NAVIGATOR.
 				1 Exercise each. Use GitHub to share the code.
 				Less exercise, more complicated. 
@@ -57,8 +59,7 @@
 				Ex6) Add a link on each user, when clicked it must go to a detail page, where to user information are presented (from the API)
 				EXTRA)
 				Visualize on a Google Map plugin all the users (using lat & lng)
-		-->
-		<title>i will be changed by config</title>
+			-->
 	</head>
 	<body class="bg-dark">
 		<!--#region navbar-->
@@ -143,6 +144,20 @@
 				</svg>
 			</a>
 		</nav>
+		<!--#endregion-->
+		<!--#region UI-->
+		<div id="UI" class="container">
+			<select
+				id="qTarget"
+				class="custom-select custom-select-lg mb-3"
+				value="name"
+			>
+				<option value="name">name</option>
+				<option value="username">username</option>
+				<option value="E-mail">E-mail</option>
+			</select>
+			<input id="filter" type="text" class="form-control" />
+		</div>
 		<!--#endregion-->
 	</body>
 </html>
