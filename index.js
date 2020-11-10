@@ -16,39 +16,40 @@ let users = []
  */
 
 /**
- *
+ *	filter users by ui parameters
  */
 
- 
 const handleFilter = (vector) => {
-	//,console.log("vector", vector)
-	const query = document.querySelector("#filter").value.toLowerCase()
+	//console.log("vector", vector)
+	const query = document.querySelector("#filter").value
 	const qTarget = document.querySelector("#qTarget").value
-	return vector.filter((element) => element[qTarget].includes(query))
-	/*console.log(
-		"result",
-		vector.filter((element) => element[qTarget].includes(query))
-	)*/
+	out = vector.filter((element) =>
+		element[qTarget].toLowerCase().includes(query.toLowerCase())
+	)
+	console.log("result", out)
+	return out
+}
+
+const addressStringArray = (vector) => {
+	console.log(
+		vector.map((user) => {
+			const address = user.address
+			delete address.geo
+			return Object.values(address).toString()
+		})
+	)
 }
 const loadusers = async () => {
 	try {
 		const loaddata = await fetch(`https://jsonplaceholder.typicode.com/users `)
 		const users_data = await loaddata.json()
 		users = users_data
+		printUsers(users)
 		return users_data
 	} catch (err) {
 		console.log(err)
 	}
-}
-const extractNames = () => {
-	
- return 	users.map(user => 
-		 user.name
-		
-	);
-  
-   }
-   const sortUsers =()=>{
+}   const sortUsers =()=>{
 	
 	 let buttonSort = document.createElement('button')
 	 let container = document.querySelector('#UI')
@@ -67,14 +68,27 @@ const extractNames = () => {
  
   
  
+const extractNames = (vector) => {
+	return vector.map((user) => user.name)
+}
+
+const printUsers = (vector) => {
+	const names = extractNames(vector)
+	const target = document.querySelector("#userList")
+	names.forEach((name) => {
+		let user = document.createElement("li")
+		user.classList.add("list-group-item")
+		user.innerText = name
+		target.appendChild(user)
+	})
+}
+
 
 window.onload = async () => {
 	document.title = config.title
 	document.querySelector("#mainMenu").innerHTML = config.title
 	loadusers()
 	sortUsers()
-     
-  
 	document
 		.querySelector("#filter")
 		.addEventListener("keyup", () => handleFilter(users))
