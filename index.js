@@ -42,7 +42,7 @@ window.onload = async () => {
 	document.title = config.title
 	document.querySelector("#mainMenu").innerHTML = config.title
 	loadusers()
-
+  
 	document
 		.querySelector("#filter")
 		.addEventListener("keyup", () => handleFilter(users))
