@@ -14,6 +14,22 @@ let users = []
  * initialize the page
  *
  */
+
+/**
+ *
+ */
+
+ 
+const handleFilter = (vector) => {
+	//,console.log("vector", vector)
+	const query = document.querySelector("#filter").value.toLowerCase()
+	const qTarget = document.querySelector("#qTarget").value
+	return vector.filter((element) => element[qTarget].includes(query))
+	/*console.log(
+		"result",
+		vector.filter((element) => element[qTarget].includes(query))
+	)*/
+}
 const loadusers = async () => {
 	try {
 		const loaddata = await fetch(`https://jsonplaceholder.typicode.com/users `)
@@ -24,24 +40,22 @@ const loadusers = async () => {
 		console.log(err)
 	}
 }
-/**
- *
- */
-const handleFilter = (vector) => {
-	console.log("vector", vector)
-	const query = document.querySelector("#filter").value
-	const qTarget = document.querySelector("#qTarget").value
-	return vector.filter((element) => element[qtarget].includes(query))
-	/*console.log(
-		"result",
-		vector.filter((element) => element[qTarget].includes(query))
-	)*/
-}
+const extractNames = () => {
+	
+ return 	users.map(user => 
+		 user.name
+		
+	);
+  
+   }
+  
+ 
 
 window.onload = async () => {
 	document.title = config.title
 	document.querySelector("#mainMenu").innerHTML = config.title
 	loadusers()
+     
   
 	document
 		.querySelector("#filter")
