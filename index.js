@@ -60,7 +60,11 @@ const sortUsers = () => {
 	buttonSort.className = "btn btn-secondary mt-3"
 
 	buttonSort.onclick = () => {
-		console.log(extractNames(users).sort())
+		//console.log(extractNames(users).sort())
+
+		printUsers(
+			users.sort((user1, user2) => user1.name.localeCompare(user2.name))
+		)
 	}
 	container.appendChild(buttonSort)
 }
@@ -78,7 +82,8 @@ const printUsers = (vector) => {
 		user.classList.add("list-group-item")
 		user.innerText = name
 		let link = document.createElement("a")
-		addressStringArray.href = `user.html?${name}`
+		link.href = `user.html?${name}`
+		link.innerText = "details"
 		user.appendChild(link)
 		target.appendChild(user)
 	})
