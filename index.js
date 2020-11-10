@@ -11,14 +11,9 @@ const config = {
 let users = []
 
 /**
- * initialize the page
- *
+ * filter users by ui parameters
+ * @param {Array} vector contains Objects representing users
  */
-
-/**
- *	filter users by ui parameters
- */
-
 const handleFilter = (vector) => {
 	//console.log("vector", vector)
 	const query = document.querySelector("#filter").value
@@ -31,7 +26,12 @@ const handleFilter = (vector) => {
 	return out
 }
 
-const addressStringArray = (vector) => {
+/**
+ * converts all the addresses into strings, drops the geo
+ * @param {Array} vector contains Objects representing users
+ */
+
+const addressesStringArray = (vector) => {
 	console.log(
 		vector.map((user) => {
 			const address = user.address
@@ -40,6 +40,10 @@ const addressStringArray = (vector) => {
 		})
 	)
 }
+
+/**
+ * fetches the users
+ */
 const loadusers = async () => {
 	try {
 		const loaddata = await fetch(`https://jsonplaceholder.typicode.com/users `)
@@ -52,12 +56,32 @@ const loadusers = async () => {
 	}
 }
 
+/**
+ * evaluates the alphabetical order of a pair of string
+ * @param {String} usr1
+ * @param {String} usr2
+ * @returns -1 if usr1 precedes usr2 +1 if usr2 precedes usr1 0 otherwhise (same string)
+ */
 const evaluateStraigth = (usr1, usr2) => usr1.name.localeCompare(usr2.name)
 
+/**
+ * evaluates the alphabetical order of a pair of string
+ * @param {String} usr1
+ * @param {String} usr2
+ * @returns -1 if usr2 precedes usr1 +1 if usr1 precedes usr2 0 otherwhise (same string)
+ */
 const evaluateReverse = (usr2, usr1) => usr1.name.localeCompare(usr2.name)
 
+/**
+ * togglable function that evaluates the order of a pair of strings, it alternates between direct alphabetical order and revers alphabetical order
+ * @param {String} usr2
+ * @param {String} usr1
+ */
 let evaluate = evaluateStraigth
 
+/**
+ * adds a button that sorts and reprints the users
+ */
 const sortUsers = () => {
 	let buttonSort = document.createElement("button")
 	let container = document.querySelector("#UI")
@@ -74,6 +98,10 @@ const sortUsers = () => {
 	container.appendChild(buttonSort)
 }
 
+/**
+ * returns an array of all the names in the objects contained in a array
+ * @param {Array} vector
+ */
 const extractNames = (vector) => {
 	return vector.map((user) => user.name)
 }
@@ -93,6 +121,10 @@ const printUsers = (vector) => {
 		target.appendChild(user)
 	})
 }
+
+/**
+ * initialize the page
+ */
 
 window.onload = async () => {
 	document.title = config.title
