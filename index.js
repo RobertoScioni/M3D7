@@ -48,6 +48,23 @@ const extractNames = () => {
 	);
   
    }
+   const sortUsers =()=>{
+	
+	 let buttonSort = document.createElement('button')
+	 let container = document.querySelector('#UI')
+	 buttonSort.id = 'buttonSort'
+	 buttonSort.innerHTML='sort users'
+	 buttonSort.className="btn btn-secondary mt-3"
+
+	 buttonSort.onclick=()=>{
+		extractNames().sort()
+
+	 }
+	 container.appendChild(buttonSort)
+
+
+   }
+ 
   
  
 
@@ -55,6 +72,7 @@ window.onload = async () => {
 	document.title = config.title
 	document.querySelector("#mainMenu").innerHTML = config.title
 	loadusers()
+	sortUsers()
      
   
 	document
