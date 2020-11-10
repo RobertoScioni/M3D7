@@ -25,24 +25,34 @@ const loadusers = async () => {
 	}
 }
 /**
- *
+ *	filter users by ui parameters
  */
 const handleFilter = (vector) => {
-	console.log("vector", vector)
+	//console.log("vector", vector)
 	const query = document.querySelector("#filter").value
 	const qTarget = document.querySelector("#qTarget").value
-	return vector.filter((element) => element[qtarget].includes(query))
-	/*console.log(
-		"result",
-		vector.filter((element) => element[qTarget].includes(query))
-	)*/
+	out = vector.filter((element) =>
+		element[qTarget].toLowerCase().includes(query.toLowerCase())
+	)
+	console.log("result", out)
+	return out
+}
+
+const addressStringArray = (vector) => {
+	console.log(
+		vector.map((user) => {
+			const address = user.address
+			delete address.geo
+			return Object.values(address).toString()
+		})
+	)
 }
 
 window.onload = async () => {
 	document.title = config.title
 	document.querySelector("#mainMenu").innerHTML = config.title
 	loadusers()
-  
+
 	document
 		.querySelector("#filter")
 		.addEventListener("keyup", () => handleFilter(users))
