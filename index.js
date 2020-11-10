@@ -14,19 +14,11 @@ let users = []
  * initialize the page
  *
  */
-const loadusers = async () => {
-	try {
-		const loaddata = await fetch(`https://jsonplaceholder.typicode.com/users `)
-		const users_data = await loaddata.json()
-		users = users_data
-		return users_data
-	} catch (err) {
-		console.log(err)
-	}
-}
+
 /**
  *	filter users by ui parameters
  */
+
 const handleFilter = (vector) => {
 	//console.log("vector", vector)
 	const query = document.querySelector("#filter").value
@@ -47,12 +39,24 @@ const addressStringArray = (vector) => {
 		})
 	)
 }
+const loadusers = async () => {
+	try {
+		const loaddata = await fetch(`https://jsonplaceholder.typicode.com/users `)
+		const users_data = await loaddata.json()
+		users = users_data
+		return users_data
+	} catch (err) {
+		console.log(err)
+	}
+}
+const extractNames = () => {
+	return users.map((user) => user.name)
+}
 
 window.onload = async () => {
 	document.title = config.title
 	document.querySelector("#mainMenu").innerHTML = config.title
 	loadusers()
-
 	document
 		.querySelector("#filter")
 		.addEventListener("keyup", () => handleFilter(users))
