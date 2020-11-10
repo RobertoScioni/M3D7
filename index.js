@@ -41,8 +41,8 @@ const loadusers = async () => {
 	}
 }
 const extractNames = () => {
-	let names
- return names =	users.map(user => 
+	
+ return 	users.map(user => 
 		 user.name
 		
 	);
