@@ -147,12 +147,16 @@
 		<!--#endregion-->
 		<!--#region UI-->
 		<div id="UI" class="container">
-			<select class="custom-select custom-select-lg mb-3">
-				<option value="1">name</option>
-				<option value="2">username</option>
-				<option value="3">E-mail</option>
+			<select
+				id="qTarget"
+				class="custom-select custom-select-lg mb-3"
+				value="name"
+			>
+				<option value="name">name</option>
+				<option value="username">username</option>
+				<option value="E-mail">E-mail</option>
 			</select>
-			<input type="text" class="form-control" />
+			<input id="filter" type="text" class="form-control" />
 		</div>
 		<!--#endregion-->
 	</body>
