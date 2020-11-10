@@ -27,6 +27,7 @@ const handleFilter = (vector) => {
 		element[qTarget].toLowerCase().includes(query.toLowerCase())
 	)
 	console.log("result", out)
+	printUsers(out)
 	return out
 }
 
@@ -57,6 +58,7 @@ const extractNames = (vector) => {
 const printUsers = (vector) => {
 	const names = extractNames(vector)
 	const target = document.querySelector("#userList")
+	target.innerHTML = ""
 	names.forEach((name) => {
 		let user = document.createElement("li")
 		user.classList.add("list-group-item")
